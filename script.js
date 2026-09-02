@@ -1,0 +1,14 @@
+const screens=[...document.querySelectorAll('.screen')];let typedStarted=false;
+function next(id){screens.forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active')}
+function lightsOn(){document.body.classList.add('lit');next('music');}
+function musicDone(){next('decorate')}
+function decorate(){for(let i=0;i<18;i++){let b=document.createElement('div');b.className='balloon';b.textContent=['🎈','🎈','🎈','💜'][i%4];b.style.left=Math.random()*95+'vw';b.style.animationDuration=(5+Math.random()*5)+'s';b.style.animationDelay=(Math.random()*2)+'s';document.body.appendChild(b)}next('cake')}
+function blowCandle(){document.getElementById('flame').textContent='💨';confetti();setTimeout(()=>{next('reveal');confetti();fireworks()},700)}
+function confetti(){for(let i=0;i<70;i++){let c=document.createElement('div');c.className='confetti';c.textContent=['✨','🎉','💜','⭐','❤️'][i%5];c.style.left=Math.random()*100+'vw';c.style.animationDelay=Math.random()*.8+'s';document.body.appendChild(c);setTimeout(()=>c.remove(),4000)}}
+function fireworks(){const c=document.getElementById('canvas'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;let ps=[];for(let k=0;k<5;k++){let cx=Math.random()*c.width,cy=Math.random()*c.height*.55;for(let i=0;i<45;i++){let a=i*Math.PI*2/45;ps.push({x:cx,y:cy,vx:Math.cos(a)*(2+Math.random()*3),vy:Math.sin(a)*(2+Math.random()*3),life:80})}}function draw(){x.clearRect(0,0,c.width,c.height);ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.035;p.life--;x.globalAlpha=Math.max(p.life/80,0);x.fillStyle='white';x.fillRect(p.x,p.y,2,2)});ps=ps.filter(p=>p.life>0);if(ps.length)requestAnimationFrame(draw)}draw()}
+document.getElementById('letter').addEventListener('transitionstart',()=>{});
+function finale(){next('finale');confetti();fireworks()}
+const text="Manoj, birthday wishes are easy to type, but some people deserve more than a simple wish. Thank you for the memories, the laughs, the support and all the little moments that make a friendship special. I hope this year gives you more peace, more happiness and a lot of moments worth remembering. Happy Birthday, Anna! ❤️";
+function startType(){if(typedStarted)return;typedStarted=true;let el=document.getElementById('typed'),i=0;function t(){if(i<text.length){el.textContent+=text[i++];setTimeout(t,24)}}t()}
+document.querySelector('[onclick="next(\'letter\')"]').addEventListener('click',startType);
+for(let i=0;i<90;i++){let s=document.createElement('i');s.className='star';s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';s.style.opacity=Math.random();document.getElementById('stars').appendChild(s)}
