@@ -1,97 +1,101 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Manoj Praveen ❤️</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#09090f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>For Manoj Praveen — Happy Birthday</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<canvas id="canvas"></canvas>
-
-<div id="stars"></div>
+<div class="noise"></div><canvas id="fx"></canvas><div id="particles"></div>
+<div class="progress"><i></i></div>
 
 <main>
-  <section class="screen active" id="intro">
-    <div class="glass">
-      <div class="mini">A little surprise for you ✨</div>
-      <h1>Hey <span>Manoj Praveen</span> ❤️</h1>
-      <p>Someone made a tiny corner of the internet just for your birthday.</p>
-      <button class="primary" onclick="next('lights')">Tap to Start ✨</button>
-    </div>
-  </section>
+<section class="page hero active" data-page="0">
+  <div class="eyebrow">02 · 09 · 2026</div>
+  <div class="orb"></div>
+  <p class="kicker">A little digital surprise</p>
+  <h1>For<br><em>Manoj Praveen</em></h1>
+  <p class="sub">Not just another birthday page.<br>Take a breath. Tap. Let it unfold.</p>
+  <button class="cta" data-next>Enter the surprise <span>↗</span></button>
+</section>
 
-  <section class="screen" id="lights">
-    <div class="content">
-      <div class="icon">💡</div>
-      <h2>It's a little dark here...</h2>
-      <p>Let's turn on the lights first.</p>
-      <button class="primary" onclick="lightsOn()">Turn On Lights 💡</button>
-    </div>
-  </section>
+<section class="page" data-page="1">
+  <div class="scene-card">
+    <div class="number">01</div><div class="big-icon">✦</div>
+    <p class="kicker">First things first</p><h2>Let there<br>be <em>light.</em></h2>
+    <p>Every good celebration deserves a little drama.</p>
+    <button class="cta" id="lightBtn">Turn on the lights <span>☼</span></button>
+  </div>
+</section>
 
-  <section class="screen" id="music">
-    <div class="content">
-      <div class="icon">🎵</div>
-      <h2>Now, some music</h2>
-      <p>Every good birthday needs a soundtrack.</p>
-      <button class="primary" onclick="musicDone()">Play Music 🎵</button>
-      <p class="hint">Browser audio needs a real audio file. Add <b>music.mp3</b> to this folder to enable it.</p>
-    </div>
-  </section>
+<section class="page" data-page="2">
+  <div class="scene-card">
+    <div class="number">02</div><div class="music-disc">♪</div>
+    <p class="kicker">Set the mood</p><h2>Now we<br><em>celebrate.</em></h2>
+    <p id="musicText">Tap below to start the birthday soundtrack.</p>
+    <button class="cta" id="musicBtn">Start the vibe <span>♫</span></button>
+    <small>Tip: add <b>music.mp3</b> to this folder for real music.</small>
+  </div>
+</section>
 
-  <section class="screen" id="decorate">
-    <div class="content">
-      <div class="icon">🎈</div>
-      <h2>Let's decorate!</h2>
-      <p>Because one birthday balloon is definitely not enough.</p>
-      <button class="primary" onclick="decorate()">Decorate 🎈</button>
-    </div>
-  </section>
+<section class="page" data-page="3">
+  <div class="scene-card">
+    <div class="number">03</div><div class="balloon-row">○ ○ ○</div>
+    <p class="kicker">Make it festive</p><h2>More<br><em>energy.</em></h2>
+    <p>Because one balloon would be embarrassingly responsible.</p>
+    <button class="cta" id="balloonBtn">Release the balloons <span>↑</span></button>
+  </div>
+</section>
 
-  <section class="screen" id="cake">
-    <div class="content">
-      <div class="cake-wrap">
-        <div class="flame" id="flame">🔥</div>
-        <div class="cake"><div class="icing"></div><div class="cake-text">MANOJ</div></div>
-      </div>
-      <h2>Make a wish, Manoj ✨</h2>
-      <p>One last step before the big reveal.</p>
-      <button class="primary" onclick="blowCandle()">Blow the Candle 🕯️</button>
-    </div>
-  </section>
+<section class="page" data-page="4">
+  <div class="cake3d">
+    <div class="flame" id="flame">✦</div><div class="candle"></div>
+    <div class="top"></div><div class="layer"></div><div class="plate"></div>
+  </div>
+  <p class="kicker">04 · Make a wish</p><h2>One wish.<br><em>Make it count.</em></h2>
+  <button class="cta" id="blowBtn">Blow out the candle <span>✦</span></button>
+</section>
 
-  <section class="screen" id="reveal">
-    <div class="content">
-      <div class="burst">🎉</div>
-      <div class="small">TODAY IS YOUR DAY</div>
-      <h1 class="birthday">HAPPY<br><span>BIRTHDAY</span></h1>
-      <h2 class="name">MANOJ PRAVEEN</h2>
-      <p class="message">May your next chapter be filled with good people, crazy memories, peaceful days and plenty of reasons to smile. ❤️</p>
-      <button class="primary" onclick="next('letter')">One More Surprise 💌</button>
-    </div>
-  </section>
+<section class="page reveal" data-page="5">
+  <div class="eyebrow">THE MAIN EVENT</div>
+  <p class="kicker">Today is yours</p>
+  <h1>HAPPY<br><em>BIRTHDAY</em></h1>
+  <div class="nameplate">MANOJ PRAVEEN</div>
+  <p class="sub">More laughs. More wins. More unforgettable days.<br>And absolutely no boring chapters.</p>
+  <button class="ghost" data-next>There’s a message for you →</button>
+</section>
 
-  <section class="screen" id="letter">
-    <div class="letter">
-      <div class="envelope">💌</div>
-      <h2>For Manoj Praveen</h2>
-      <p id="typed"></p>
-      <button class="primary" onclick="finale()">Open the Final Surprise 🎆</button>
+<section class="page letter-page" data-page="6">
+  <article class="letter tamil-letter">
+    <div class="letter-top"><span>PRIVATE NOTE</span><span>♡</span></div>
+    <h2>🎂❤️ Happy Birthday Anna! 🫂✨</h2>
+    <div id="letterText" class="message-lines">
+      <p>சில relationships நம்ம வாழ்க்கையில் எப்படி வந்துச்சு, எப்போ close ஆனுச்சுன்னு நமக்கே தெரியாது… அப்படித்தான் உங்களோட relationship-ம். ❤️</p>
+      <p>Staff-ஆ ஆரம்பிச்ச relationship, இப்போ ஒரு நல்ல friend-ஆவும், எனக்கு பிடிச்ச Anna-ஆவும் மாறிடுச்சு. 🫂</p>
+      <p>எப்போதும் என்னை புரிஞ்சுக்கிட்டு, தேவையான நேரத்தில் support பண்ணி, ஒரு Anna மாதிரி guide பண்ணினதுக்கு ரொம்ப நன்றி. ❤️</p>
+      <p>Life-ல எவ்வளவு பேர் வந்தாலும், சில பேர் மட்டும் தான் மனசுல ஒரு special place எடுத்துக்குவாங்க… அந்த few people-ல நீங்களும் ஒருத்தர் Anna. ❤️</p>
+      <p>இந்த birthday உங்களுக்கு நிறைய happiness, peace, success-ஐ கொண்டு வரணும். 🙏✨<br>எப்போதும் இப்படியே happy-ஆவும், positive-ஆவும் இருக்கணும்.</p>
+      <p><strong>Once again, Happy Birthday Anna! 🎂🥳❤️</strong><br><strong>Stay blessed &amp; stay the same always! 🫂✨</strong></p>
     </div>
-  </section>
+    <div class="sign">— Hemanth</div>
+  </article>
+  <button class="cta" id="finalBtn">Open the final surprise <span>↗</span></button>
+</section>
 
-  <section class="screen" id="finale">
-    <div class="content">
-      <div class="final-heart">❤️</div>
-      <h1>Happy Birthday,<br><span>Manoj Praveen</span></h1>
-      <p>Some people start as friends and slowly become family. Keep smiling, keep winning, and stay exactly the person you are.</p>
-      <div class="signature">— Hemanth</div>
-      <button class="secondary" onclick="location.reload()">Replay ↻</button>
-    </div>
-  </section>
+<section class="page final" data-page="7">
+  <div class="final-glow"></div><div class="eyebrow">ONE LAST THING</div>
+  <h1>Stay<br><em>awesome.</em></h1>
+  <p>Some people start as friends and slowly become family. Keep smiling, keep winning, and keep making good memories.</p>
+  <div class="final-name">MANOJ PRAVEEN <span>♥</span></div>
+  <button class="ghost" id="replay">Replay the whole thing ↻</button>
+</section>
 </main>
-
+<div class="touch">Swipe ↑</div>
 <script src="script.js"></script>
 </body>
 </html>
