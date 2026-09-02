@@ -1,7 +1,7 @@
 const pages=[...document.querySelectorAll('.page')],bar=document.querySelector('.progress i');let current=0,lit=false;
 function go(n){current=Math.max(0,Math.min(pages.length-1,n));pages.forEach((p,i)=>p.classList.toggle('active',i===current));bar.style.width=((current+1)/pages.length*100)+'%';document.querySelector('.touch').textContent=current===pages.length-1?'Replay ↻':'Swipe ↑'}
 document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>go(current+1));
-document.getElementById('lightBtn').onclick=()=>{lit=true;document.body.style.background='radial-gradient(circle at 50% 30%,#392d48,#0b0a11 65%)';spawnStars();go(2)};
+document.getElementById('lightBtn').onclick=()=>{if(lit)return;lit=true;document.body.classList.add('lights-on');document.body.style.background='radial-gradient(circle at 50% 8%,#4b3b46,#100e16 70%)';spawnStars();document.getElementById('lightBtn').textContent='Lights are on ✨';setTimeout(()=>go(2),1800)};
 document.getElementById('musicBtn').onclick=()=>{document.getElementById('musicText').textContent='The vibe is officially on. 🎵';go(3)};
 document.getElementById('balloonBtn').onclick=()=>{balloons();go(4)};
 document.getElementById('blowBtn').onclick=()=>{document.getElementById('flame').textContent='';confetti();fireworks();setTimeout(()=>go(5),700)};
@@ -9,19 +9,28 @@ let typed=false;
 function typeNote(){
   if(typed)return; typed=true;
   const box=document.getElementById('letterText');
-  [...box.querySelectorAll('p')].forEach((p,i)=>{
-    const text=p.textContent;
-    p.textContent='';
-    p.style.opacity='0';
-    p.style.transform='translateY(8px)';
-    p.style.transition='opacity .7s ease,transform .7s ease';
-    setTimeout(()=>{
-      p.textContent=text;
-      requestAnimationFrame(()=>{p.style.opacity='1';p.style.transform='none'});
-    },i*450);
-  });
+  const paras=[...box.querySelectorAll('p')];
+  paras.forEach(p=>{p.dataset.full=p.textContent;p.textContent='';p.style.opacity='1';});
+  let pi=0;
+  function typeParagraph(){
+    if(pi>=paras.length)return;
+    const p=paras[pi], text=p.dataset.full;
+    let i=0;
+    function tick(){
+      if(i<text.length){
+        p.textContent+=text[i++];
+        setTimeout(tick,30);
+      }else{
+        pi++;
+        setTimeout(typeParagraph,850);
+      }
+    }
+    tick();
+  }
+  typeParagraph();
 }
 const observer=new MutationObserver(()=>{if(pages[6].classList.contains('active'))typeNote()});
+
 observer.observe(pages[6],{attributes:true});
 document.getElementById('finalBtn').onclick=()=>{go(7);confetti();fireworks()};
 document.getElementById('replay').onclick=()=>location.reload();

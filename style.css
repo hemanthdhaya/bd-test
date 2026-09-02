@@ -6,3 +6,11 @@
 .message-lines p{font-family:'Noto Sans Tamil','DM Sans',sans-serif;font-size:16px;line-height:1.9;margin:0 0 18px;color:#4b4650}
 .message-lines strong{font-weight:700;color:#241d28}
 @media(max-width:600px){.tamil-letter{max-height:67vh;padding:22px}.message-lines{max-height:39vh}.message-lines p{font-size:15px;line-height:1.85}}
+
+/* Cinematic light-on effect */
+body:before,body:after{content:"";position:fixed;z-index:0;pointer-events:none;opacity:0;transition:opacity 1.8s ease,filter 1.8s ease}
+body:before{inset:-20%;background:radial-gradient(ellipse at 50% 8%,rgba(255,218,135,.42),transparent 25%),radial-gradient(ellipse at 18% 15%,rgba(255,235,175,.20),transparent 22%),radial-gradient(ellipse at 82% 15%,rgba(255,235,175,.20),transparent 22%);filter:blur(18px)}
+body:after{inset:0;background:radial-gradient(circle at 50% 0%,rgba(255,231,171,.18),transparent 42%);mix-blend-mode:screen}
+body.lights-on:before,body.lights-on:after{opacity:1}
+.scene-card{position:relative;z-index:2}
+.tamil-letter{position:relative;z-index:2}
